@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const LoginPage = ({ setLoginUser }) => {
+const login = ({ setLoginUser }) => {
   const history = useHistory();
   const [user, setUser] = useState({ name: "", password: "" });
 
@@ -11,8 +11,8 @@ const LoginPage = ({ setLoginUser }) => {
     setUser({ ...user, [name]: value });
   };
 
-  const login = () => {
-    axios.post("http://localhost:6969/Login", user).then((res) => {
+  const loginClick = () => {
+    axios.post("http://localhost:4000/login", user).then((res) => {
       alert(res.data.message);
       setLoginUser(res.data.user);
       history.push("/");
@@ -25,7 +25,6 @@ const LoginPage = ({ setLoginUser }) => {
       <form action="#" autoComplete="off">
         <input
           type="text"
-          id="sign-in-email"
           name="email"
           value={user.email}
           onChange={handleChange}
@@ -33,14 +32,13 @@ const LoginPage = ({ setLoginUser }) => {
         />
         <input
           type="password"
-          id="sign-in-email"
           name="password"
           value={user.password}
           onChange={handleChange}
           placeholder="Your password"
         />
         <div>
-          <button type="submit" onClick={login}>
+          <button type="submit" onClick={loginClick}>
             Login
           </button>
         </div>
@@ -48,4 +46,4 @@ const LoginPage = ({ setLoginUser }) => {
     </>
   );
 };
-export default LoginPage;
+export default login;

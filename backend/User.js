@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("mongoose-validator");
 const Schema = mongoose.Schema;
 
 //SECTION  collection and schema for Registration
@@ -7,40 +8,42 @@ let UserSchema = new Schema(
     name: {
       type: String,
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      required: [true, "can't be blank"],
+      required: true,
     },
-    user_name: {
+    userName: {
       type: String,
-      lowercase: true,
+      required: true,
       unique: true,
-      required: [true, "can't be blank"],
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true,
+      trim: true,
     },
     email: {
       type: String,
       lowercase: true,
-      unique: true,
-      required: [true, "can't be blank"],
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true,
+      trim: true,
+      validate: [
+        validator({
+          validator: "isEmail",
+          message: "Please enter valid email!",
+        }),
+      ],
+      required: true,
     },
     phone: {
       type: Number,
       unique: true,
-      required: [true, "can't be blank"],
-      match: [/^[0-9]+$/, "is invalid"],
-      index: true,
+      required: true,
+      length: 10,
     },
     password: {
       type: String,
+      minlength: 8,
+      maxlength: 16,
+      trim: true,
       required: true,
     },
     role: {
       type: String,
-      required: [true, "can't be blank"],
-      match: [/^[a-zA-Z]+$/, "is invalid"],
-      index: true,
+      required: true,
     },
   },
   {

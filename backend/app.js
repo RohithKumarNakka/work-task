@@ -1,6 +1,5 @@
-var app = require("./server");
-const PORT = 4000;
+var app = require("./index");
 
-app.listen(PORT, function () {
-  console.log("Server is running on Port:", PORT);
+app.listen(4000, function () {
+  console.log("Server is running on Port:", 4000);
 });
