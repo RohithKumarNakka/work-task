@@ -7,7 +7,6 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      match: [/^[a-zA-Z]+$/, "is invalid"],
       required: true,
     },
     userName: {

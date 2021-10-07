@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../../index.css";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -24,23 +25,24 @@ const Register = () => {
   };
 
   //register function
-  const registerClick = () => {
-    const { name, userName, email, phone, password, role } = user;
-    if (name && userName && email && phone && password && role) {
-      axios
-        .post("http://localhost:4000/register", user)
-        .then((res) => console.log(res));
+  const RegisterClick = () => {
+    const { name, userName, email, phone, password } = user;
+    if (name && userName && email && phone && password) {
+      axios.post("http://localhost:4000/register", user).then();
     } else {
       alert("invalid input");
     }
   };
   return (
     <>
-      <div>
-        <div>Create a new account</div>
-        <span>
-          Already have an account ?<a href="/login">Sign in</a>
-        </span>
+      <div className="body">
+        <div>
+          <p>Create a new account</p>
+        </div>
+        <p>
+          Already have an account? <a href="/login">Log in</a>
+        </p>
+
         <div>
           <form action="/login" method="get">
             <div>
@@ -88,17 +90,16 @@ const Register = () => {
                 placeholder="password"
               />
             </div>
-            <div>
-              Role
-              <select>
-                <input onChange={handleChange} />
+            <div className="role">
+              <p>Role</p>
+              <select className="select">
                 <option>Admin</option>
                 <option>CoAdmin</option>
                 <option>Manager</option>
               </select>
             </div>
             <div>
-              <button type="submit" onClick={registerClick}>
+              <button type="submit" onClick={RegisterClick}>
                 Register
               </button>
             </div>

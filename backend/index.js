@@ -13,11 +13,11 @@ app.use(
   })
 );
 app.use(cors());
-app.use(registerRouter);
-app.use(loginRouter);
 
 mongoose.connect("mongodb://localhost:27017/user-data", {
   useNewUrlParser: true,
 });
+app.use(registerRouter);
+app.use(loginRouter);
 
 module.exports = app;

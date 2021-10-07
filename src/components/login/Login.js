@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import "../../index.css";
 
 const Login = ({ setLoginUser }) => {
   const history = useHistory();
@@ -21,10 +22,10 @@ const Login = ({ setLoginUser }) => {
 
   return (
     <>
-      <div>
-        <div>Login To Your Account</div>
+      <div className="body">
+        <p>Login To Your Account</p>
         <div>
-          <form action="/" autoComplete="off" method="get">
+          <form action="/" method="get">
             <input
               type="text"
               name="email"
@@ -46,7 +47,7 @@ const Login = ({ setLoginUser }) => {
             </div>
           </form>
         </div>
-        <div class="flex items-center justify-center mt-6">
+        <div>
           <a href="/register" onClick={history.push("/register")}>
             You don't have an account?
           </a>
