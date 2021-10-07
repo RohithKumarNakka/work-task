@@ -3,11 +3,11 @@ const validator = require("mongoose-validator");
 const Schema = mongoose.Schema;
 
 //SECTION  collection and schema for Registration
-let UserSchema = new Schema(
+const userSchema = new Schema(
   {
     name: {
       type: String,
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      match: [/^[a-zA-Z]+$/, "is invalid"],
       required: true,
     },
     userName: {
@@ -51,4 +51,4 @@ let UserSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", userSchema);

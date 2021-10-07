@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const login = ({ setLoginUser }) => {
+const Login = ({ setLoginUser }) => {
   const history = useHistory();
-  const [user, setUser] = useState({ name: "", password: "" });
+  const [user, setUser] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    const { email, value } = e.target;
+    setUser({ ...user, [email]: value });
   };
 
   const loginClick = () => {
@@ -21,29 +21,38 @@ const login = ({ setLoginUser }) => {
 
   return (
     <>
-      <div>Login To Your Account</div>
-      <form action="#" autoComplete="off">
-        <input
-          type="text"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-          placeholder="Your email"
-        />
-        <input
-          type="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-          placeholder="Your password"
-        />
+      <div>
+        <div>Login To Your Account</div>
         <div>
-          <button type="submit" onClick={loginClick}>
-            Login
-          </button>
+          <form action="/" autoComplete="off" method="get">
+            <input
+              type="text"
+              name="email"
+              value={user.email}
+              onChange={handleChange}
+              placeholder="Your email"
+            />
+            <input
+              type="password"
+              name="password"
+              value={user.password}
+              onChange={handleChange}
+              placeholder="Your password"
+            />
+            <div>
+              <button type="submit" onClick={loginClick}>
+                Login
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+        <div class="flex items-center justify-center mt-6">
+          <a href="/register" onClick={history.push("/register")}>
+            You don't have an account?
+          </a>
+        </div>
+      </div>
     </>
   );
 };
-export default login;
+export default Login;

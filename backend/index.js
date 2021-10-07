@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const router = require("./route");
+const registerRouter = require("./routers/register");
+const loginRouter = require("./routers/login");
+require("./userSchema/User");
 
 app.use(express.json());
 app.use(
@@ -11,11 +13,11 @@ app.use(
   })
 );
 app.use(cors());
+app.use(registerRouter);
+app.use(loginRouter);
 
-mongoose.connect("mongodb://localhost:27017/userData", {
+mongoose.connect("mongodb://localhost:27017/user-data", {
   useNewUrlParser: true,
 });
-
-app.use("./User", router);
 
 module.exports = app;

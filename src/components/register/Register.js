@@ -11,14 +11,22 @@ const Register = () => {
     role: "",
   });
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    const { name, userName, email, phone, password, role, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+      [userName]: value,
+      [email]: value,
+      [phone]: value,
+      [password]: value,
+      [role]: value,
+    });
   };
 
   //register function
-  const register = () => {
-    const { name, email, phone, password, role } = user;
-    if (name && email && phone && password && role) {
+  const registerClick = () => {
+    const { name, userName, email, phone, password, role } = user;
+    if (name && userName && email && phone && password && role) {
       axios
         .post("http://localhost:4000/register", user)
         .then((res) => console.log(res));
@@ -30,15 +38,18 @@ const Register = () => {
     <>
       <div>
         <div>Create a new account</div>
+        <span>
+          Already have an account ?<a href="/login">Sign in</a>
+        </span>
         <div>
-          <form action="#">
+          <form action="/login" method="get">
             <div>
               <input
                 type="text"
                 name="name"
                 value={user.name}
                 onChange={handleChange}
-                placeholder="FullName"
+                placeholder="Name"
               />
             </div>
             <div>
@@ -61,7 +72,7 @@ const Register = () => {
             </div>
             <div>
               <input
-                type={Number}
+                type="text"
                 name="phone"
                 value={user.phone}
                 onChange={handleChange}
@@ -80,14 +91,14 @@ const Register = () => {
             <div>
               Role
               <select>
-                <input value={user.role} onChange={handleChange} />
+                <input onChange={handleChange} />
                 <option>Admin</option>
                 <option>CoAdmin</option>
                 <option>Manager</option>
               </select>
             </div>
             <div>
-              <button type="submit" onClick={register}>
+              <button type="submit" onClick={registerClick}>
                 Register
               </button>
             </div>
